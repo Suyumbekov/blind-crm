@@ -7,11 +7,11 @@ const router = express.Router();
 
 const { format, parse } = require("date-fns");
 const mongoose = require("mongoose");
-const config = require("../db.config");
-const Order = require("../models/Order");
-const Worker = require("../models/Worker");
-const Size = require("../models/Size");
-const Fabric = require("../models/Fabric");
+const config = require("../../db.config");
+const Order = require("../../models/Order");
+const Worker = require("../../models/Worker");
+const Size = require("../../models/Size");
+const Fabric = require("../../models/Fabric");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
