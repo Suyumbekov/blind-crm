@@ -1,2 +1,6 @@
 node_modules
 .env
+server.js
+
+# Local Netlify folder
+.netlify
