@@ -1,0 +1,29 @@
+.nav-item {
+  position: relative;
+}
+
+.counter {
+  position: absolute;
+  top: -6px;
+  left: 60px;
+  color: #f1f0f1;
+  background-color: #0f38c0;
+  border-radius: 20px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.col p {
+  margin: 0 2px;
+}
+
+.value {
+  opacity: 0.85;
+}
+
+.finished {
+  opacity: 0.7;
+  background-color: #ffff004d;
+}
