@@ -6,11 +6,7 @@ const orderSchema = new mongoose.Schema({
   address: String,
   phone: String,
   type: String,
-  size_id: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "size",
-    required: true,
-  },
+  dimensions: [[Number]],
   type2: String,
   mechanism: String,
   sum: Number,
