@@ -8,28 +8,28 @@ const Nav = ({ counter, button }) => {
     >
       <div className="container-fluid">
         <a className="navbar-brand text-white" href="#">
-          <img src="/img/logo.png" alt="" width="120" height="70" />
+          <img src="/img/logo.png" alt="" />
         </a>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link text-white fs-5" to="/admin">
+              <Link className="nav-link text-white" to="/admin">
                 Admin
               </Link>
             </li>
             <li className="nav-item active">
-              <Link className="nav-link text-white fs-5" to="/depo">
+              <Link className="nav-link text-white" to="/depo">
                 Склад
               </Link>
             </li>
             <li className="nav-item active">
-              <Link className="nav-link text-white fs-5" to="/">
+              <Link className="nav-link text-white" to="/">
                 Заказы <span className="counter">{counter}</span>
               </Link>
             </li>
             <li className="nav-item">
               <button
-                className="nav-link text-white fs-5"
+                className="nav-link text-white"
                 type="button"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"

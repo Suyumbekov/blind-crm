@@ -1,8 +1,9 @@
 import React from "react";
 
 const Table = ({ orders, onStatusChange, onOrderClick }) => {
-  const handleStatusChange = (orderId, newStatus) => {
+  const handleStatusChange = (orderId, newStatus, event) => {
     // Call the onStatusChange function passed from the parent component
+    event.stopPropagation();
     onStatusChange(orderId, newStatus);
   };
 
@@ -23,7 +24,6 @@ const Table = ({ orders, onStatusChange, onOrderClick }) => {
           <th scope="col">Имя замерщика</th>
           <th scope="col">Вид жалюзи</th>
           <th scope="col">Срок</th>
-          <th scope="col">Комментарий</th>
           <th scope="col">Статус</th>
         </tr>
       </thead>
@@ -40,13 +40,12 @@ const Table = ({ orders, onStatusChange, onOrderClick }) => {
               {order.type}, {order.type2}, {order.mechanism}
             </td>
             <td>{order.date}</td>
-            <td>{order.comment}</td>
             <td>
               {order.status === 1 ? (
                 <button
                   className="btn btn-primary"
                   type="button"
-                  onClick={() => handleStatusChange(order._id, 2)}
+                  onClick={(event) => handleStatusChange(order._id, 2, event)}
                 >
                   Принять
                 </button>
@@ -54,7 +53,7 @@ const Table = ({ orders, onStatusChange, onOrderClick }) => {
                 <button
                   className="btn btn-warning"
                   type="button"
-                  onClick={() => handleStatusChange(order._id, 3)}
+                  onClick={(event) => handleStatusChange(order._id, 3, event)}
                 >
                   Готово
                 </button>

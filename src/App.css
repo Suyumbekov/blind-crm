@@ -46,3 +46,31 @@ table tr.finished td {
 .done {
   width: 35px;
 }
+.navbar-brand img {
+  width: 120px;
+  height: 70px;
+}
+
+nav .nav-link {
+  font-size: 20px;
+}
+
+@media only screen and (max-width: 450px) {
+  nav .nav-link {
+    font-size: 16px;
+  }
+
+  .navbar-brand img {
+    width: 80px;
+    height: 70px;
+  }
+
+  table {
+    font-size: 14px;
+  }
+
+  table button.btn {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+}
