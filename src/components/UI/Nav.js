@@ -1,4 +1,4 @@
-import { Routes, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Nav = ({ counter, button }) => {
   return (
@@ -7,9 +7,9 @@ const Nav = ({ counter, button }) => {
       style={{ backgroundColor: "#2f3c7e" }}
     >
       <div className="container-fluid">
-        <a className="navbar-brand text-white" href="#">
+        <Link className="navbar-brand text-white" to="/">
           <img src="/img/logo.png" alt="" />
-        </a>
+        </Link>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">

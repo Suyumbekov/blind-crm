@@ -1,8 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const OrderFormModal = ({ isOpen, onClose, updateOrders }) => {
+const OrderFormModal = ({ isOpen, onClose, updateOrders, workers }) => {
   const [formData, setFormData] = useState({
     name: "",
     address: "",
@@ -17,6 +17,15 @@ const OrderFormModal = ({ isOpen, onClose, updateOrders }) => {
   });
 
   const closeBtnRef = useRef(null); // Create a ref for the close button
+
+  useEffect(() => {
+    if (workers.length > 0) {
+      setFormData((prevData) => ({
+        ...prevData,
+        name: workers[0].name,
+      }));
+    }
+  }, [workers]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -55,7 +64,7 @@ const OrderFormModal = ({ isOpen, onClose, updateOrders }) => {
 
     try {
       await axios
-        .post("https://blind-crm.onrender.com/api/order", formData)
+        .post("http://localhost:3000/api/order", formData)
         .then((res) => {
           updateOrders(res.data.order);
           notify();
@@ -94,15 +103,19 @@ const OrderFormModal = ({ isOpen, onClose, updateOrders }) => {
             <form onSubmit={handleSubmit} id="myForm">
               <div className="mb-2">
                 <label htmlFor="inputText">Имя замерщика</label>
-                <input
-                  type="text"
-                  id="inputText"
+                <select
+                  className="form-select"
                   name="name"
-                  className="form-control"
                   value={formData.name}
                   onChange={handleChange}
                   required
-                />
+                >
+                  {workers.map((worker, index) => (
+                    <option value={worker.name} key={index}>
+                      {worker.name}
+                    </option>
+                  ))}
+                </select>
               </div>
               <div className="mb-2">
                 <label htmlFor="inputAddress">Адрес</label>
@@ -216,7 +229,7 @@ const OrderFormModal = ({ isOpen, onClose, updateOrders }) => {
                 <label className="col-sm-2 col-form-label">Механизм</label>
                 <div className="col-sm-2">
                   <select
-                    className="form-select"
+                    className="mechanism form-select "
                     name="mechanism"
                     value={formData.mechanism}
                     onChange={handleChange}

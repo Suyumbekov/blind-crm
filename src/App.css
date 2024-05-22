@@ -1,3 +1,6 @@
+body {
+  height: 100vh;
+}
 .nav-item {
   position: relative;
 }
@@ -23,6 +26,10 @@
   opacity: 0.85;
 }
 
+div select.mechanism {
+  padding: 6px;
+}
+
 table tr.finished td {
   opacity: 0.7;
   background-color: #ffff004d;
@@ -43,7 +50,9 @@ table tr.finished td {
   display: none;
 }
 
-.done {
+.done,
+.pending,
+.in-progress {
   width: 35px;
 }
 .navbar-brand img {

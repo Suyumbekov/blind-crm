@@ -11,11 +11,11 @@ const OrderDetails = ({ order, onClose }) => {
         aria-hidden={!order}
         style={{ display: order ? "block" : "none" }}
       >
-        <div className="modal-dialog modal-dialog-centered modal-lg">
+        <div className="modal-dialog modal-dialog-centered modal-md">
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="orderModalLabel">
-                Order Details
+                Детали заказа
               </h5>
               <button
                 type="button"
@@ -83,7 +83,7 @@ const OrderDetails = ({ order, onClose }) => {
                 data-bs-dismiss="modal"
                 onClick={onClose}
               >
-                Close
+                Закрыть
               </button>
             </div>
           </div>
