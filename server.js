@@ -35,12 +35,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/api/orders", async (req, res) => {
   try {
     const workers = await Worker.find();
+    const fabrics = await Fabric.find();
 
     // Fetch all orders and populate the worker name and sizes
     const orders = await Order.find();
     console.log(orders);
     const status = orders.filter((order) => order.status === 1).length;
-    res.json({ data: orders, workers: workers, status_counter: status });
+    res.json({
+      data: orders,
+      workers: workers,
+      fabrics: fabrics,
+      status_counter: status,
+    });
   } catch (error) {
     console.error("Error fetching orders:", error);
     res.status(500).json({ message: "Internal server error" });
