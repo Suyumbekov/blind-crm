@@ -29,7 +29,9 @@ function App() {
   // Function to fetch orders from the server
   const fetchOrders = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/orders"); // Replace this with your actual API endpoint
+      const response = await axios.get(
+        "https://blind-crm.onrender.com/api/orders"
+      ); // Replace this with your actual API endpoint
       console.log(response.data);
       response.data.data.sort((a, b) => a.status - b.status);
       setOrders(response.data.data); // Update the orders state with the fetched data
@@ -59,7 +61,7 @@ function App() {
   const statusChange = async (id, status) => {
     try {
       // Make a PUT request to update the status of the order
-      await axios.put(`http://localhost:3000/api/order/${id}`, {
+      await axios.put(`https://blind-crm.onrender.com/api/order/${id}`, {
         status: status,
       });
 

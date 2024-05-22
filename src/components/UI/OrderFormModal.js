@@ -64,7 +64,7 @@ const OrderFormModal = ({ isOpen, onClose, updateOrders, workers }) => {
 
     try {
       await axios
-        .post("http://localhost:3000/api/order", formData)
+        .post("https://blind-crm.onrender.com/api/order", formData)
         .then((res) => {
           updateOrders(res.data.order);
           notify();
