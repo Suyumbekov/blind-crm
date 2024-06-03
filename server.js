@@ -140,6 +140,15 @@ app.post("/api/worker", async (req, res) => {
   }
 });
 
+app.delete("/api/workers/:id", async (req, res) => {
+  try {
+    await Worker.findByIdAndDelete(req.params.id);
+    res.status(204).end();
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 app.post("/api/fabric", async (req, res) => {
   try {
     console.log("New fabric created");
