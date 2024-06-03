@@ -57,12 +57,13 @@ app.get("/api/orders", async (req, res) => {
 app.put("/api/order/:id", async (req, res) => {
   const orderId = req.params.id;
   const { status } = req.body;
+  const { endDate } = req.body;
 
   try {
     // Find the order by ID and update its status
     const updatedOrder = await Order.findByIdAndUpdate(
       orderId,
-      { status },
+      { status: status, endDate: endDate },
       { new: true }
     );
 
