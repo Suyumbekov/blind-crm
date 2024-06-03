@@ -4,11 +4,11 @@ const Nav = ({ counter, button }) => {
   return (
     <nav
       className="navbar navbar-expand navbar-dark mb-4"
-      style={{ backgroundColor: "#2f3c7e" }}
+      style={{ backgroundColor: "#007d83" }}
     >
       <div className="container-fluid">
         <Link className="navbar-brand text-white" to="/">
-          <img src="/img/logo.png" alt="" />
+          <img src="/img/logo2.png" alt="" />
         </Link>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">

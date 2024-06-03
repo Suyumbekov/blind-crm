@@ -10,7 +10,7 @@ body {
   top: -6px;
   left: 60px;
   color: #f1f0f1;
-  background-color: #0f38c0;
+  background-color: #e61d1d;
   border-radius: 20px;
   width: 30px;
   height: 30px;
@@ -56,7 +56,7 @@ table tr.finished td {
   width: 35px;
 }
 .navbar-brand img {
-  width: 120px;
+  width: 105px;
   height: 70px;
 }
 
@@ -82,4 +82,26 @@ nav .nav-link {
     font-size: 12px;
     padding: 5px 10px;
   }
+}
+.wrapper-width {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.code-width-height {
+  width: 120px;
+}
+
+form button.add-btn {
+  align-self: end;
+  height: 37px;
+}
+
+.calc {
+  text-align: right;
+  padding-right: 60px;
+  margin-top: -14px;
+  margin-bottom: 10px;
+  opacity: 0.75;
 }

@@ -1,10 +1,10 @@
 import React from "react";
 
 const Table = ({ orders, onStatusChange, onOrderClick }) => {
-  const handleStatusChange = (orderId, newStatus, event) => {
+  const handleStatusChange = (orderId, newStatus, event, dateTime = "") => {
     // Call the onStatusChange function passed from the parent component
     event.stopPropagation();
-    onStatusChange(orderId, newStatus);
+    onStatusChange(orderId, newStatus, dateTime);
   };
 
   const handleOrderClick = (order) => {
@@ -12,7 +12,7 @@ const Table = ({ orders, onStatusChange, onOrderClick }) => {
   };
   return (
     <table
-      className="table table-sm"
+      className="table table-sm table-bordered border-dark"
       style={{
         boxShadow:
           "0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12)",
@@ -53,7 +53,14 @@ const Table = ({ orders, onStatusChange, onOrderClick }) => {
                 <button
                   className="btn btn-warning"
                   type="button"
-                  onClick={(event) => handleStatusChange(order._id, 3, event)}
+                  onClick={(event) =>
+                    handleStatusChange(
+                      order._id,
+                      3,
+                      event,
+                      new Date().toISOString()
+                    )
+                  }
                 >
                   Готово
                 </button>

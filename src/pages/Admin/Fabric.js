@@ -7,7 +7,7 @@ const Fabric = ({ fabrics }) => {
         <thead>
           <tr>
             <th scope="col">Имя</th>
-            <th scope="col">Статус</th>
+            <th scope="col">Количество</th>
           </tr>
         </thead>
         <tbody>

@@ -33,7 +33,16 @@ function App() {
         "https://blind-crm.onrender.com/api/orders"
       ); // Replace this with your actual API endpoint
       console.log(response.data);
-      response.data.data.sort((a, b) => a.status - b.status);
+      // response.data.data.sort((a, b) => a.status - b.status);
+      response.data.data.sort((a, b) => {
+        if (a.endDate && b.endDate) {
+          const dateA = new Date(a.endDate);
+          const dateB = new Date(b.endDate);
+          return dateB - dateA;
+        } else {
+          return a.status - b.status;
+        }
+      });
       setOrders(response.data.data); // Update the orders state with the fetched data
       setCounter(response.data.status_counter);
       setWorkers(response.data.workers);
@@ -58,11 +67,12 @@ function App() {
     setCounter(counter + 1);
   };
 
-  const statusChange = async (id, status) => {
+  const statusChange = async (id, status, dateTime) => {
     try {
       // Make a PUT request to update the status of the order
-      await axios.put(`https://blind-crm.onrender.com/api/order/${id}`, {
+      await axios.put(`http://localhost:3000/api/order/${id}`, {
         status: status,
+        endDate: dateTime,
       });
 
       // If the request is successful, update the status of the corresponding order in the state
@@ -73,6 +83,10 @@ function App() {
         return order;
       });
       setOrders(updatedOrders);
+
+      if (status === 3) {
+        setCounter(counter - 1);
+      }
     } catch (error) {
       console.error("Error updating order status:", error);
     }

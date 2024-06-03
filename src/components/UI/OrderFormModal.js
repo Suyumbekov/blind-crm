@@ -40,9 +40,11 @@ const OrderFormModal = ({ isOpen, onClose, updateOrders, workers }) => {
     const newDimensions = [...formData.dimensions];
     newDimensions[index] = [...newDimensions[index]]; // Make a copy of the inner array
     if (name === "width") {
-      newDimensions[index][0] = value;
-    } else if (name === "height") {
       newDimensions[index][1] = value;
+    } else if (name === "height") {
+      newDimensions[index][2] = value;
+    } else if (name === "code") {
+      newDimensions[index][0] = value;
     }
     setFormData((prevData) => ({
       ...prevData,
@@ -57,7 +59,7 @@ const OrderFormModal = ({ isOpen, onClose, updateOrders, workers }) => {
     }));
   };
 
-  const notify = () => toast.success("Order created successfully.");
+  const notify = () => toast.success("Заказ успешно создан.");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -159,33 +161,61 @@ const OrderFormModal = ({ isOpen, onClose, updateOrders, workers }) => {
                 </select>
               </div>
               {formData.dimensions.map((dimension, index) => (
-                <div className="input-group mb-3" key={index}>
-                  <span className="input-group-text">Ширина и высота</span>
-                  <input
-                    type="number"
-                    className="form-control"
-                    aria-label="Ширина"
-                    name="width"
-                    value={dimension[0]}
-                    onChange={(e) => handleDimensionChange(index, e)}
-                    required
-                  />
-                  <input
-                    type="number"
-                    className="form-control"
-                    aria-label="Высота"
-                    name="height"
-                    value={dimension[1]}
-                    onChange={(e) => handleDimensionChange(index, e)}
-                    required
-                  />
-                  <button
-                    type="button"
-                    className="btn btn-primary"
-                    onClick={handleAddDimension}
-                  >
-                    +
-                  </button>
+                <div key={index}>
+                  <div className="wrapper-width input-group mb-3">
+                    <div className="code-width-height">
+                      <label htmlFor="code">Код</label>
+                      <input
+                        id="code"
+                        type="text"
+                        className="form-control"
+                        aria-label="Код"
+                        name="code"
+                        value={dimension[0]}
+                        onChange={(e) => handleDimensionChange(index, e)}
+                        required
+                      />
+                    </div>
+                    <div className="code-width-height">
+                      <label htmlFor="width">Ширина</label>
+                      <input
+                        id="width"
+                        type="number"
+                        className="form-control"
+                        aria-label="Ширина"
+                        name="width"
+                        value={dimension[1]}
+                        onChange={(e) => handleDimensionChange(index, e)}
+                        required
+                      />
+                    </div>
+                    <div className="code-width-height">
+                      <label htmlFor="height">Высота</label>
+                      <input
+                        id="height"
+                        type="number"
+                        className="form-control"
+                        aria-label="Высота"
+                        name="height"
+                        value={dimension[2]}
+                        onChange={(e) => handleDimensionChange(index, e)}
+                        required
+                      />
+                    </div>
+
+                    <button
+                      type="button"
+                      className=" btn btn-primary add-btn"
+                      onClick={handleAddDimension}
+                    >
+                      +
+                    </button>
+                  </div>
+                  {dimension[1] && dimension[2] && (
+                    <div className="calc">
+                      {dimension[1] * dimension[2]} кв.м
+                    </div>
+                  )}
                 </div>
               ))}
 

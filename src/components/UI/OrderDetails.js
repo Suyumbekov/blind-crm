@@ -1,6 +1,52 @@
 import React from "react";
 
 const OrderDetails = ({ order, onClose }) => {
+  const handlePrint = () => {
+    // Open a new window for printing
+    const printWindow = window.open("", "_blank");
+
+    // Generate the HTML content to be printed
+    const content = `
+      <html>
+        <head>
+          <title>Order Details</title>
+          <style>
+            /* Define any custom styles for printing */
+            /* For example, hide unnecessary elements */
+            .modal-header, .modal-footer, .btn {
+              display: none;
+            }
+          </style>
+        </head>
+        <body>
+          <h2>Order Details</h2>
+          <p><strong>Имя замерщика:</strong> ${order.name}</p>
+          <p><strong>Адрес:</strong> ${order.address}</p>
+          <p><strong>Телефон номер:</strong> ${order.phone}</p>
+          <p><strong>Срок:</strong> ${order.date}</p>
+          <p><strong>Комментарий:</strong> ${order.comment}</p>
+          <p><strong>Вид жалюзи:</strong> ${order.type}, ${order.type2}</p>
+          <p><strong>Механизм:</strong> ${order.mechanism}</p>
+          <p><strong>Размер(Код - Ш х В):</strong></p>
+          ${order.dimensions
+            .map(
+              (dimension, index) => `
+            <p key=${index}>${dimension[0]} - ${dimension[1]}м x ${dimension[2]}м</p>
+          `
+            )
+            .join("")}
+        </body>
+      </html>
+    `;
+
+    // Write the content to the new window
+    printWindow.document.write(content);
+
+    // Close the print window after printing is complete
+    printWindow.document.close();
+    printWindow.print();
+  };
+
   return (
     order && (
       <div
@@ -64,12 +110,12 @@ const OrderDetails = ({ order, onClose }) => {
                   </p>
                   <p id="mechanism">{order.mechanism}</p>
                   <p>
-                    <strong>Размер(Ш х В):</strong>
+                    <strong>Размер(Код - Ш х В):</strong>
                   </p>
                   {order.dimensions.map((order, index) => {
                     return (
                       <p key={index} id="blindSize">
-                        {order[0]}м x {order[1]}м
+                        {order[0]} - {order[1]}м x {order[2]}м
                       </p>
                     );
                   })}
@@ -77,6 +123,13 @@ const OrderDetails = ({ order, onClose }) => {
               </div>
             </div>
             <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={handlePrint}
+              >
+                Принт
+              </button>
               <button
                 type="button"
                 className="btn btn-secondary"
