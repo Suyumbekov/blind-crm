@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { Schema } = mongoose;
 
 // Define a schema for the order
 const orderSchema = new mongoose.Schema({
@@ -6,7 +7,7 @@ const orderSchema = new mongoose.Schema({
   address: String,
   phone: String,
   type: String,
-  dimensions: [[Number]],
+  dimensions: [[Schema.Types.Mixed]],
   type2: String,
   mechanism: String,
   sum: Number,
