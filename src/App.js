@@ -70,7 +70,7 @@ function App() {
   const statusChange = async (id, status, dateTime) => {
     try {
       // Make a PUT request to update the status of the order
-      await axios.put(`http://localhost:3000/api/order/${id}`, {
+      await axios.put(`https://blind-crm.onrender.com/api/order/${id}`, {
         status: status,
         endDate: dateTime,
       });
@@ -103,6 +103,34 @@ function App() {
   const handleCloseModal = () => {
     setSelectedOrder(null);
     setBackdrop(false);
+  };
+
+  const handleAddWorker = async (name) => {
+    try {
+      const response = await axios.post(
+        "https://blind-crm.onrender.com/api/worker",
+        {
+          name,
+        }
+      );
+      const newWorker = response.data.worker;
+      setWorkers((prevWorkers) => [...prevWorkers, newWorker]);
+    } catch (error) {
+      console.error("Error adding worker:", error);
+    }
+  };
+
+  const handleDeleteWorker = async (workerId) => {
+    try {
+      await axios.delete(
+        `https://blind-crm.onrender.com/api/workers/${workerId}`
+      );
+      setWorkers((workers) =>
+        workers.filter((worker) => worker._id !== workerId)
+      );
+    } catch (error) {
+      console.error("Error deleting worker:", error);
+    }
   };
   return (
     <div className="App">
@@ -139,7 +167,13 @@ function App() {
         <Route
           path="/admin/*"
           element={
-            <AdminPage workers={workers} fabrics={fabrics} orders={orders} />
+            <AdminPage
+              workers={workers}
+              onAddWorker={handleAddWorker}
+              onDeleteWorker={handleDeleteWorker}
+              fabrics={fabrics}
+              orders={orders}
+            />
           }
         />
         <Route path="/depo" element={<DepoPage fabrics={fabrics} />} />

@@ -13,12 +13,27 @@ const AdminLayout = () => (
   </div>
 );
 
-const AdminPage = ({ workers, fabrics, orders }) => {
+const AdminPage = ({
+  workers,
+  onAddWorker,
+  onDeleteWorker,
+  fabrics,
+  orders,
+}) => {
   return (
     <Routes>
       <Route path="/" element={<AdminLayout />}>
         <Route path="fabrics" element={<Fabric fabrics={fabrics} />} />
-        <Route path="workers" element={<Workers workers={workers} />} />
+        <Route
+          path="workers"
+          element={
+            <Workers
+              workers={workers}
+              onAddWorker={onAddWorker}
+              onDeleteWorker={onDeleteWorker}
+            />
+          }
+        />
         <Route path="orders" element={<Order orders={orders} />} />
       </Route>
     </Routes>
