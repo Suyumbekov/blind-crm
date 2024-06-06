@@ -69,6 +69,11 @@ nav .nav-link {
   min-height: 100vh;
 }
 
+.admin-table td:first-child {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
 @media only screen and (max-width: 450px) {
   nav .nav-link {
     font-size: 16px;
@@ -89,7 +94,7 @@ nav .nav-link {
   }
 
   .admin {
-    width: 130px;
+    width: 135px;
   }
 }
 .wrapper-width {

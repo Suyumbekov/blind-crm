@@ -15,16 +15,16 @@ const Workers = ({ workers, onAddWorker, onDeleteWorker }) => {
   return (
     <>
       <h2>Замерщики</h2>
-      <table className="table table-bordered w-50 border-primary">
+      <table className="table table-bordered w-750 border-primary admin-table">
         <thead>
           <tr>
-            <th scope="col">Имя</th>
+            <th scope="col text-center">Имя</th>
             <th scope="col">
               <input
                 type="text"
                 value={newWorkerName}
                 onChange={(e) => setNewWorkerName(e.target.value)}
-                placeholder="Введите имя замерщика"
+                placeholder="Имя"
                 className="form-control"
               />
               <button className="btn btn-primary" onClick={handleAddWorker}>
