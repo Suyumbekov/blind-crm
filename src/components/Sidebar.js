@@ -4,10 +4,7 @@ import { NavLink } from "react-router-dom";
 const Sidebar = () => {
   return (
     <>
-      <div
-        className="d-flex flex-column p-3 text-bg-dark"
-        style={{ width: "280px", minHeight: "100vh" }}
-      >
+      <div className="admin d-flex flex-column p-3 text-bg-dark">
         <p className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
           <svg className="bi pe-none me-2" width="40" height="32">
             <use xlinkHref="#bootstrap"></use>

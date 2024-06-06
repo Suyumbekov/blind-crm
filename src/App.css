@@ -64,6 +64,11 @@ nav .nav-link {
   font-size: 20px;
 }
 
+.admin {
+  width: 240px;
+  min-height: 100vh;
+}
+
 @media only screen and (max-width: 450px) {
   nav .nav-link {
     font-size: 16px;
@@ -81,6 +86,10 @@ nav .nav-link {
   table button.btn {
     font-size: 12px;
     padding: 5px 10px;
+  }
+
+  .admin {
+    width: 130px;
   }
 }
 .wrapper-width {
