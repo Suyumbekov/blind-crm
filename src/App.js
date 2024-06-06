@@ -30,7 +30,7 @@ function App() {
   const fetchOrders = async () => {
     try {
       const response = await axios.get(
-        "https://blind-crm.onrender.com/api/orders"
+        "https://sunroll-server.dt.r.appspot.com/api/orders"
       ); // Replace this with your actual API endpoint
       console.log(response.data);
       // response.data.data.sort((a, b) => a.status - b.status);
@@ -70,10 +70,13 @@ function App() {
   const statusChange = async (id, status, dateTime) => {
     try {
       // Make a PUT request to update the status of the order
-      await axios.put(`https://blind-crm.onrender.com/api/order/${id}`, {
-        status: status,
-        endDate: dateTime,
-      });
+      await axios.put(
+        `https://sunroll-server.dt.r.appspot.com/api/order/${id}`,
+        {
+          status: status,
+          endDate: dateTime,
+        }
+      );
 
       // If the request is successful, update the status of the corresponding order in the state
       const updatedOrders = orders.map((order) => {
@@ -108,7 +111,7 @@ function App() {
   const handleAddWorker = async (name) => {
     try {
       const response = await axios.post(
-        "https://blind-crm.onrender.com/api/worker",
+        "https://sunroll-server.dt.r.appspot.com/api/worker",
         {
           name,
         }
@@ -123,7 +126,7 @@ function App() {
   const handleDeleteWorker = async (workerId) => {
     try {
       await axios.delete(
-        `https://blind-crm.onrender.com/api/workers/${workerId}`
+        `https://sunroll-server.dt.r.appspot.com/api/workers/${workerId}`
       );
       setWorkers((workers) =>
         workers.filter((worker) => worker._id !== workerId)
