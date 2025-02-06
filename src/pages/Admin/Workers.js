@@ -18,7 +18,9 @@ const Workers = ({ workers, onAddWorker, onDeleteWorker }) => {
       <table className="table table-bordered w-750 border-primary admin-table">
         <thead>
           <tr>
-            <th scope="col text-center">Имя</th>
+            <th scope="col" className="text-center">
+              Имя
+            </th>
             <th scope="col">
               <input
                 type="text"

@@ -1,6 +1,6 @@
 import React from "react";
 
-const OrderDetails = ({ order, onClose }) => {
+const OrderDetails = ({ order, worker, onClose }) => {
   const handlePrint = () => {
     // Open a new window for printing
     const printWindow = window.open("", "_blank");
@@ -20,7 +20,7 @@ const OrderDetails = ({ order, onClose }) => {
         </head>
         <body>
           <h2>Order Details</h2>
-          <p><strong>Имя замерщика:</strong> ${order.name}</p>
+          <p><strong>Имя замерщика:</strong> ${worker.name}</p>
           <p><strong>Адрес:</strong> ${order.address}</p>
           <p><strong>Телефон номер:</strong> ${order.phone}</p>
           <p><strong>Срок:</strong> ${order.date}</p>
@@ -80,7 +80,7 @@ const OrderDetails = ({ order, onClose }) => {
                   <p>
                     <strong>Имя замерщика:</strong>
                   </p>
-                  <p id="orderName">{order.name}</p>
+                  <p id="orderName">{worker.name}</p>
                   <p>
                     <strong>Адрес:</strong>
                   </p>

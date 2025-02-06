@@ -1,17 +1,17 @@
 import React, { useState, useRef, useEffect } from "react";
-import axios from "axios";
 import toast from "react-hot-toast";
 
 const OrderFormModal = ({ isOpen, onClose, updateOrders, workers }) => {
   const [formData, setFormData] = useState({
-    name: "",
+    worker_id: "",
     address: "",
-    phone: "",
+    phone: "996",
     type: "Зебра", // Default value
     type2: "Мех", // Default value
     mechanism: "32", // Default value
     sum: "",
     date: "",
+    status: 1,
     comment: "",
     dimensions: [[]], // Array to store additional dimensions
   });
@@ -22,13 +22,19 @@ const OrderFormModal = ({ isOpen, onClose, updateOrders, workers }) => {
     if (workers.length > 0) {
       setFormData((prevData) => ({
         ...prevData,
-        name: workers[0].name,
+        worker_id: workers[0].id,
       }));
     }
   }, [workers]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    let { name, value } = e.target;
+
+    // Limit the total length of the input
+    if (name === "phone" && value.length > 11) {
+      value = value.slice(0, 11);
+    }
+
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -65,14 +71,12 @@ const OrderFormModal = ({ isOpen, onClose, updateOrders, workers }) => {
     e.preventDefault();
 
     try {
-      await axios
-        .post("https://sunroll-server.dt.r.appspot.com/api/order", formData)
-        .then((res) => {
-          updateOrders(res.data.order);
-          notify();
-        });
+      updateOrders(formData);
+      notify();
+      onClose();
       closeBtnRef.current.click();
     } catch (error) {
+      toast.error("Ошибка при создании заказа.");
       console.error("Error creating order:", error);
     }
   };
@@ -113,7 +117,7 @@ const OrderFormModal = ({ isOpen, onClose, updateOrders, workers }) => {
                   required
                 >
                   {workers.map((worker, index) => (
-                    <option value={worker.name} key={index}>
+                    <option value={worker.id} key={index}>
                       {worker.name}
                     </option>
                   ))}
@@ -213,7 +217,10 @@ const OrderFormModal = ({ isOpen, onClose, updateOrders, workers }) => {
                   </div>
                   {dimension[1] && dimension[2] && (
                     <div className="calc">
-                      {dimension[1] * dimension[2]} кв.м
+                      {dimension[1] * dimension[2] < 1
+                        ? 1
+                        : dimension[1] * dimension[2]}{" "}
+                      кв.м
                     </div>
                   )}
                 </div>

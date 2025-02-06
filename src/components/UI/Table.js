@@ -1,10 +1,16 @@
 import React from "react";
 
-const Table = ({ orders, onStatusChange, onOrderClick }) => {
+const Table = ({ orders, workers, onStatusChange, onOrderClick }) => {
   const handleStatusChange = (orderId, newStatus, event, dateTime = "") => {
     // Call the onStatusChange function passed from the parent component
     event.stopPropagation();
     onStatusChange(orderId, newStatus, dateTime);
+  };
+
+  // Helper function to get the worker name from the worker ID
+  const getWorkerName = (workerId) => {
+    const worker = workers.find((worker) => worker.id === workerId);
+    return worker ? worker.name : "Unknown";
   };
 
   const handleOrderClick = (order) => {
@@ -35,7 +41,7 @@ const Table = ({ orders, onStatusChange, onOrderClick }) => {
             onClick={() => handleOrderClick(order)}
           >
             <td>{index + 1}</td>
-            <td>{order.name}</td>
+            <td>{getWorkerName(order.worker_id)}</td>
             <td>
               {order.type}, {order.type2}, {order.mechanism}
             </td>
@@ -45,7 +51,7 @@ const Table = ({ orders, onStatusChange, onOrderClick }) => {
                 <button
                   className="btn btn-primary"
                   type="button"
-                  onClick={(event) => handleStatusChange(order._id, 2, event)}
+                  onClick={(event) => handleStatusChange(order.id, 2, event)}
                 >
                   Принять
                 </button>
@@ -55,7 +61,7 @@ const Table = ({ orders, onStatusChange, onOrderClick }) => {
                   type="button"
                   onClick={(event) =>
                     handleStatusChange(
-                      order._id,
+                      order.id,
                       3,
                       event,
                       new Date().toISOString()
