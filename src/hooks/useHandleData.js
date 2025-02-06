@@ -35,7 +35,7 @@ const useHandleData = (orders, initialWorkers, setOrders, setCounter) => {
             const dateA = new Date(a.endDate);
             const dateB = new Date(b.endDate);
             return dateB - dateA;
-          } else if (status === 3) {
+          } else {
             return a.status - b.status;
           }
         });
