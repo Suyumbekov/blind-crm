@@ -1,5 +1,4 @@
 import { useState } from "react";
-import BarcodeScanner from "../../components/BarcodeScanner";
 import BarcodeScannerComponent from "react-qr-barcode-scanner";
 
 const Fabric = ({ fabrics }) => {
